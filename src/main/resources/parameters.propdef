@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><parameters><param_references><param_reference><name>defaultZip</name><datatype>xsd:string</datatype><default>90210</default><description>Fallback US ZIP when the caller omits ?zip=</description></param_reference></param_references></parameters>
