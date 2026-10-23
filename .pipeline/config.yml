@@ -1,0 +1,23 @@
+# Project configuration
+general:
+  cpiApiServiceKeyCredentialsId: "nova-cpi-api-key"      # CI/CD credential (Service Key) = Process Integration Runtime, plan api
+  integrationFlowId: "Weather_Data_v2"
+
+# Stage configuration
+stages:
+  uploadStage:
+    enabled: true
+  deployStage:
+    enabled: true
+  integrationTestStage:
+    enabled: true
+
+# Steps configuration
+steps:
+  integrationArtifactUpload:
+    packageId: "WeatherData"
+    integrationFlowName: "Weather Data v2"
+  integrationArtifactTriggerIntegrationTest:
+    contentType: "application/json"
+    messageBodyPath: "integrationTest/messageBody"
+    iFlowServiceKeyCredentialsId: "nova-cpi-runtime-key"  # CI/CD credential (Service Key) = Process Integration Runtime, plan integration-flow
