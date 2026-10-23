@@ -47,9 +47,12 @@ def Message processData(Message message) {
     if (upstreamBody) sb << "downstreamBody: ${upstreamBody.take(2000)}\n"
     sb << 'exceptionChain:\n'
     int depth = 0
-    for (def t = ex; t != null && depth < 10; t = t.getCause(), depth++) {
-        sb << "  [${depth}] ${t.getClass().getName()}: ${t.getMessage()}\n"
-        if (t.getCause() == t) break
+    def cur = ex
+    while (cur != null && depth < 10) {
+        sb << "  [${depth}] ${cur.getClass().getName()}: ${cur.getMessage()}\n"
+        if (cur.getCause() == cur) break
+        cur = cur.getCause()
+        depth++
     }
 
     def log = messageLogFactory.getMessageLog(message)
